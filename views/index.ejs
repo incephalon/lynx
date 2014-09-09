@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			app = {};
+			log = console.log.bind(console);
+		</script>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel='stylesheet' href='/lib/bootstrap/css/bootstrap.min.css' />
+		<link rel='stylesheet' href='/lib/bootstrap/css/bootstrap-theme.css' />
+		<script type="text/javascript" src="/lib/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="/javascripts/home.js"></script>
+	</head>
+	<body>
+		<form class="form-inline" role="form">
+			<input id="urlText" type="email" class="form-control" id="exampleInputEmail1" placeholder="Browse www">
+			<button id="goButton" type="button" class="btn btn-primary">Search</button>
+		</form>
+		
+		<iframe id="urlIframe" class="embed-responsive-item" src="http://getbootstrap.com/"></iframe>
+		
+		<div class="container bs-docs-container">
+			<textarea id="notesElement" class="form-control" rows="3" placeholder="My notes"></textarea>
+			<input id="tagElement" type="email" class="form-control" id="exampleInputEmail1" placeholder="My tag">
+			<button id="saveButton" type="button" class="btn btn-primary">Save</button>
+		</div>
+	</body>
+</html>
