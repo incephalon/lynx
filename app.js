@@ -11,7 +11,7 @@ var app = express();
 
 
 var mongojs = require("mongojs");
-var mongourl = 'mongodb://incephalon:lthnia90_@ds050087.mongolab.com:50087/themap';
+var mongourl = 'mongodb://bookmark:123456@paulo.mongohq.com:10017/youtap';
 var collectionList = ["bookmark"];
 var db = mongojs.connect(mongourl, collectionList);
 
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.use('/', routes);
 app.use('/users', users);
@@ -36,9 +36,9 @@ app.use('/save', function(req, res, next){
     var options = req.query;
     options.date = new Date();
     console.log(options);
-    res.send(200, 'Cool')
+//     res.send(200, 'Cool')
 
-return;
+// return;
     db.bookmark.insert(options,function(err,data){
         if(data){
             res.send(data);
@@ -53,6 +53,7 @@ app.use('/fetch', function(req, res, next){
         console.log(err);
         if(data){
             res.send(data);
+            // console.log(data+"*")
         }
         else{
             res.send("{}");
