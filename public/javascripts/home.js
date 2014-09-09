@@ -6,10 +6,10 @@ app.bindEvents = function(){
 	$("#goButton").bind("click",app.onClickGoButton);
 	$("#saveButton").bind("click",app.onClickSaveButton);
 	$("#goTag").bind("click",app.onClickFetchButton);
-	$("#showList li").bind("click",app.changeSite);
 }
-app.changeSite = function(e){
+app.changeSite = function(){
 	log(this);
+	$("#urlIframe").attr("src",$(this).attr("url"));
 }
 app.onClickGoButton = function(){
 	var url = $("#urlText").val();
@@ -32,6 +32,7 @@ app.onClickSaveButton = function(){
 }
 
 app.onClickFetchButton = function(){
+	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").show();
 	var options = {};
 	options.notes = $("#notesElement").val();
 	options.tags = $("#tagElement").val();
@@ -53,18 +54,20 @@ app.ajaxResult = function(xhr,status,error){
 	{
 		if(temp == xhr[i].tags)
 		{
-			$("#showList").append("<li class='list-group-item' src='"+xhr[i].notes+"' >"+xhr[i].notes+"</li>")
+			$("#showList").append("<li class='list-group-item' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
 		}
 		else
 		{
-			log(xhr[i].tags)
-			log(temp)	
+			log(xhr[i].tags);			log(temp);
 		}
 	}
+	$(".list-group-item").bind("click",app.changeSite);
+	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();
 }
 app.ajaxSuccess = function(xhr,status,error){
 	log(xhr);
 }
 app.ajaxError = function(result,status,xhr){
 	log(result.responseText);
+	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();
 }
