@@ -6,10 +6,28 @@ app.bindEvents = function(){
 	$("#goButton").bind("click",app.onClickGoButton);
 	$("#saveButton").bind("click",app.onClickSaveButton);
 	$("#goTag").bind("click",app.onClickFetchButton);
+	$("#goText").bind("click",app.emptyNotes);
+	$("#clearButton").bind("click",app.clickOnClear);
+
+}
+app.clickOnClear = function (){
+	$("#notesElement").val("");
+	$("#tagElement").val("");
+	$("#tagId").val("");
+	app.emptyNotes();
+
+}
+app.emptyNotes = function(){
+	$("#showList").html("");
+	log("emptyNotes")
 }
 app.changeSite = function(){
 	log(this);
 	$("#urlIframe").attr("src",$(this).attr("url"));
+	$("#tagElement").val($(this).attr("tag"));
+	$("#notesElement").val($(this).attr("note"));
+	$("#tagId").val($(this).attr("idTag"));
+	app.emptyNotes();
 }
 app.onClickGoButton = function(){
 	var url = $("#urlText").val();
@@ -21,16 +39,21 @@ app.onClickSaveButton = function(){
 	options.notes = $("#notesElement").val();
 	options.tags = $("#tagElement").val();
 	options.url = $("#urlIframe").attr("src");	
-	log(options);
+	options._id = $("#tagId").val();
 	$.ajax({
 		"url" : "/save",
 		"data" : options,
 		"contentType" : "JSON",
 		"success" : app.ajaxSuccess,
 		"error" : app.ajaxError
-	});
+	});	
+	$("#notesElement").val("");
+	$("#tagElement").val("");
+	$("#tagId").val("");
 }
-
+app.updateTage = function(){
+	
+}
 app.onClickFetchButton = function(){
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").show();
 	var options = {};
@@ -45,16 +68,19 @@ app.onClickFetchButton = function(){
 		"error" : app.ajaxError
 	});
 
+
 }
 app.ajaxResult = function(xhr,status,error){
-	$("#showList").html("");
+	log("fetch")
 	log(xhr.length);
+
 	var temp = $("#goText").val();
 	for(var i=0;i<xhr.length;i++)
 	{
+		log(xhr[i]._id);
 		if(temp == xhr[i].tags)
 		{
-			$("#showList").append("<li class='list-group-item' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
+			$("#showList").append("<li class='list-group-item' note='"+xhr[i].notes+"' tag='"+xhr[i].tags+"' idTag='"+xhr[i]._id+"' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
 		}
 		else
 		{
@@ -68,6 +94,6 @@ app.ajaxSuccess = function(xhr,status,error){
 	log(xhr);
 }
 app.ajaxError = function(result,status,xhr){
-	log(result.responseText);
+	log(result.responseText	);
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();
 }

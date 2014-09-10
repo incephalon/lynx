@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 		<script type="text/javascript">
 			app = {};
 			log = console.log.bind(console);
@@ -14,8 +16,8 @@
 		<script type="text/javascript" src="/javascripts/home.js"></script>
 	</head>
 	<body>
-		<div class="ui-row row">
-			<div class="col-md-10">
+		<div class="ui-rofw row">
+			<div class="col-md-8">
 				<form class="" role="form"><!-- form-inline -->
 					<input id="urlText" type="email" class="form-control" id="exampleInputEmail1" placeholder="Browse www">
 			</div>
@@ -25,7 +27,7 @@
 			</div>
 		</div>
 		<div class="ui-row row">
-			<div class="col-md-10">
+			<div class="col-md-8">
 				<iframe id="urlIframe" class="embed-responsive-item" src="http://getbootstrap.com/"></iframe>
 			</div>
 			<div class="col-md-2">
@@ -41,9 +43,11 @@
 						<!-- <li class="list-group-item"></li> -->
 						
 					</ul>
+					<div id="tagId" type="text" class="form-control" style="display:none"></div>
 					<textarea id="notesElement" class="form-control" rows="3" placeholder="My notes"></textarea>
-					<input id="tagElement" type="email" class="form-control" id="exampleInputEmail1" placeholder="My tag">
+					<input id="tagElement" type="email" class="form-control"  placeholder="My tag">
 					<button id="saveButton" type="button" class="btn btn-primary">Save</button>
+					<button id="clearButton" type="button" class="btn btn-primary">clear</button>
 				</div>
 			</div>
 		</div>

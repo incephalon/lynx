@@ -39,13 +39,21 @@ app.use('/save', function(req, res, next){
 //     res.send(200, 'Cool')
 
 // return;
-    db.bookmark.insert(options,function(err,data){
-        if(data){
-            res.send(data);
-        }
-        else{
-        }
-    });
+    if(options._id)
+    {   console.log(options._id)
+        var id = options._id;
+        delete options._id;
+        db.bookmark.update({"_id":id},{$set : options})
+    }
+    else
+    {
+        db.bookmark.insert(options,function(err,data){
+            if(data){
+                res.send(data);
+            }
+            
+        });
+    }
 });
 
 app.use('/fetch', function(req, res, next){
