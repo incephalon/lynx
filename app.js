@@ -35,15 +35,18 @@ app.use('/users', users);
 app.use('/save', function(req, res, next){
     var options = req.query;
     options.date = new Date();
-    console.log(options);
+    // console.log(options);
 //     res.send(200, 'Cool')
 
 // return;
+
     if(options._id)
-    {   console.log(options._id)
+    {   
+        console.log(options._id+"/-")
         var id = options._id;
         delete options._id;
-        db.bookmark.update({"_id":id},{$set : options})
+        db.bookmark.update({"_id":id},{$set : options},function(){console.log(options)})
+        // console.log(options)
     }
     else
     {
@@ -61,7 +64,9 @@ app.use('/fetch', function(req, res, next){
         console.log(err);
         if(data){
             res.send(data);
-            // console.log(data+"*")
+            
+            // for(var i=0;i<data.length;i++)
+            // {console.log(data[i].tags+"*"+data[i].notes) }
         }
         else{
             res.send("{}");

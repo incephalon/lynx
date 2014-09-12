@@ -10,14 +10,17 @@ app.bindEvents = function(){
 	$("#clearButton").bind("click",app.clickOnClear);
 
 }
-app.clickOnClear = function (){
+app.clickOnClear = function (){ 
 	$("#notesElement").val("");
 	$("#tagElement").val("");
 	$("#tagId").val("");
+	$("#goText").val("");
+
 	app.emptyNotes();
 
 }
 app.emptyNotes = function(){
+	$("#goText").val("");
 	$("#showList").html("");
 	log("emptyNotes")
 }
