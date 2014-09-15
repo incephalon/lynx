@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,19 +7,23 @@ a {
   color: #00B7FF;
 }
 #urlIframe{
-	height:400px;
-	width:400px;
+	height:550px;
+	width:100%;
 }
-.container.divider.left{
-	width:60%;
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
 }
-.container.divider.right{
-	width:40%;
-	left: 60%;
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
 }
-.container.divider{
-	position: absolute;
-	left: 0px;
-	margin: 0px;
-	padding: 0px;
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+.glyphicon-refresh{
+	
 }

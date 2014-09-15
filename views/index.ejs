@@ -2,33 +2,54 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-    	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-  	
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 		<script type="text/javascript">
 			app = {};
 			log = console.log.bind(console);
 		</script>
-		
+		<link rel='stylesheet' href='/stylesheets/style.css' />
 		<link rel='stylesheet' href='/lib/bootstrap/css/bootstrap.min.css' />
 		<link rel='stylesheet' href='/lib/bootstrap/css/bootstrap-theme.css' />
 		<script type="text/javascript" src="/lib/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
+		
 		<script type="text/javascript" src="/javascripts/home.js"></script>
 	</head>
 	<body>
-		<div class="container divider left">
-			<form class="form-inline" role="form">
-				<input id="urlText" type="email" class="form-control" id="exampleInputEmail1" placeholder="Browse www">
-				<button id="goButton" type="button" class="btn btn-primary">Search</button>
-			</form>
-		
-			<iframe id="urlIframe" class="embed-responsive-item" src="http://getbootstrap.com/"></iframe>
+		<div class="ui-rofw row" style='width:100%;'>
+			<div class="col-md-8" style="float:left;width:65%;">
+				<form class="" role="form"><!-- form-inline -->
+					<input id="urlText" type="email" class="form-control" id="exampleInputEmail1" placeholder="Browse www">
+			</div>
+			<div class="col-md-4" style="float:left;width:30%;">
+					<button id="goButton" type="button" class="btn btn-primary">Search</button>
+				</form>
+			</div>
 		</div>
-		<div class="container divider right">
-			<textarea id="notesElement" class="form-control" rows="3" placeholder="My notes"></textarea>
-			<input id="tagElement" type="email" class="form-control" id="exampleInputEmail1" placeholder="My tag">
-			<button id="saveButton" type="button" class="btn btn-primary">Save</button>
+		<div class="ui-row row" style='width:100%;'>
+			<div class="col-md-8" style="float:left;width:65%;">
+				<iframe id="urlIframe" class="embed-responsive-item" src="http://getbootstrap.com/"></iframe>
+			</div>
+			<div class="col-md-4" style="float:left;width:30%;">
+				<div class=" bs-docs-container"><!-- container -->
+					<div class="input-group">
+						<input id="goText"  type="text" class="form-control input-large" placeholder="Search your tag..">
+						<span id="goTag" class="input-group-addon input-large">
+							<span class="glyphicon glyphicon-search"></span>
+							<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display:none;"></span>
+						</span>
+					</div>
+					<ul id="showList" class="list-group">
+						<!-- <li class="list-group-item"></li> -->
+						
+					</ul>
+					<div id="tagId" type="text" class="form-control" style="display:none"></div>
+					<textarea id="notesElement" class="form-control" rows="3" placeholder="My notes"></textarea>
+					<input id="tagElement" type="email" class="form-control"  placeholder="My tag">
+					<button id="saveButton" type="button" class="btn btn-primary">Save</button>
+					<button id="clearButton" type="button" class="btn btn-primary">clear</button>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
