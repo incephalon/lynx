@@ -11,12 +11,15 @@ var app = express();
 
 
 var mongojs = require("mongojs");
-var mongourl = 'mongodb://bookmark:123456@paulo.mongohq.com:10017/youtap';
+var mongourl = 'mongodb://incephalon:lthnia90_@ds050077.mongolab.com:50077/links';
 var collectionList = ["bookmark"];
 var db = mongojs.connect(mongourl, collectionList);
         
-
-// view engine setup
+// db.bookmark.remove({},function(err,data){
+//      console.log(err+"err")
+//             console.log(data+"data")
+// })
+// view engine setup        
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -35,38 +38,57 @@ app.use('/users', users);
 app.use('/save', function(req, res, next){
     var options = req.query;
     options.date = new Date();
-    // console.log(options);
-//     res.send(200, 'Cool')
+    console.log(options);
 
-// return;
-
-    if(options._id)
-    {   
-        console.log(options._id+"/-")
-        var id = options._id;
-        delete options._id;
-        db.bookmark.update({"_id":id},{$set : options},function(){console.log(options)})
-        // console.log(options)
-    }
-    else
-    {
-        db.bookmark.insert(options,function(err,data){
-            if(data){
-                res.send(data);
-            }
-            
-        });
-    }
+    var tags = options.tags;
+    tags = tags.replace(/ /g,'').split(",");
+    options.tags = tags;  
+    console.log(tags);
+    console.log(options);
+    // for(i=0;i<tags.length;i++){
+        // options.tags = tags[i]; 
+        if(options._id)
+        {   
+            console.log("update");
+            console.log(options._id+"/-")
+            var id = options._id;
+            delete options._id;
+            db.bookmark.update({"_id":id},{$set : options},function(err,data){
+                
+                console.log(err+"err")
+                console.log(data+"data")
+            })
+            // console.log(options)
+        }
+        else
+        {
+            delete options._id;
+            console.log("save")
+            db.bookmark.insert(options,function(err,data){
+                
+                console.log(err);
+                if(data){
+                    res.send(data);
+                }
+                
+            });
+        }
+    // }
+    
 });
 
 app.use('/fetch', function(req, res, next){
-    db.bookmark.find({},function(err,data){
+    var options = req.query;
+    console.log(options)
+    options.tags = [options.tags];
+    db.bookmark.find({ tags: { $all: options.tags } },function(err,data){           
+
+        console.log("fetch")
         console.log(err);
+        console.log(data);
         if(data){
+            console.log(data);
             res.send(data);
-            
-            // for(var i=0;i<data.length;i++)
-            // {console.log(data[i].tags+"*"+data[i].notes) }
         }
         else{
             res.send("{}");

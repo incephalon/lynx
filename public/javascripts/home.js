@@ -15,7 +15,7 @@ app.clickOnClear = function (){
 	$("#tagElement").val("");
 	$("#tagId").val("");
 	$("#goText").val("");
-
+	// app.hideDropdown();
 	app.emptyNotes();
 
 }
@@ -23,6 +23,7 @@ app.emptyNotes = function(){
 	$("#goText").val("");
 	$("#showList").html("");
 	log("emptyNotes")
+	// app.hideDropdown();
 }
 app.changeSite = function(){
 	log(this);
@@ -31,6 +32,7 @@ app.changeSite = function(){
 	$("#notesElement").val($(this).attr("note"));
 	$("#tagId").val($(this).attr("idTag"));
 	app.emptyNotes();
+	// app.hideDropdown();
 }
 app.onClickGoButton = function(){
 	var url = $("#urlText").val();
@@ -60,9 +62,8 @@ app.updateTage = function(){
 app.onClickFetchButton = function(){
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").show();
 	var options = {};
-	options.notes = $("#notesElement").val();
-	options.tags = $("#tagElement").val();
-	options.url = $("#urlIframe").attr("src");
+	options.tags = $("#goText").val();	
+	
 	$.ajax({
 		"url" : "/fetch",
 		"data" : options,
@@ -76,7 +77,7 @@ app.onClickFetchButton = function(){
 app.ajaxResult = function(xhr,status,error){
 	log("fetch")
 	log(xhr.length);
-
+	// app.displayDropdown();
 	var temp = $("#goText").val();
 	for(var i=0;i<xhr.length;i++)
 	{
@@ -99,4 +100,10 @@ app.ajaxSuccess = function(xhr,status,error){
 app.ajaxError = function(result,status,xhr){
 	log(result.responseText	);
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();
+}
+app.displayDropdown = function(){
+	$("#toggelDrop").addClass("open")
+}
+app.hideDropdown = function(){
+	$("#toggelDrop").removeClass("open")	
 }
