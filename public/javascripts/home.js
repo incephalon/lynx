@@ -63,7 +63,7 @@ app.onClickFetchButton = function(){
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").show();
 	var options = {};
 	options.tags = $("#goText").val();	
-	
+
 	$.ajax({
 		"url" : "/fetch",
 		"data" : options,
@@ -82,14 +82,14 @@ app.ajaxResult = function(xhr,status,error){
 	for(var i=0;i<xhr.length;i++)
 	{
 		log(xhr[i]._id);
-		if(temp == xhr[i].tags)
-		{
-			$("#showList").append("<li class='list-group-item' note='"+xhr[i].notes+"' tag='"+xhr[i].tags+"' idTag='"+xhr[i]._id+"' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
-		}
-		else
-		{
-			log(xhr[i].tags);			log(temp);
-		}
+		// if(temp == xhr[i].tags)
+		// {
+		$("#showList").append("<li class='list-group-item' note='"+xhr[i].notes+"' tag='"+xhr[i].tags+"' idTag='"+xhr[i]._id+"' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
+		// }
+		// else
+		// {
+		// 	log(xhr[i].tags);			//log(temp);
+		// }
 	}
 	$(".list-group-item").bind("click",app.changeSite);
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();

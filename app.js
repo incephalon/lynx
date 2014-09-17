@@ -56,7 +56,7 @@ app.use('/save', function(req, res, next){
             db.bookmark.update({"_id":id},{$set : options},function(err,data){
                 
                 console.log(err+"err")
-                console.log(data+"data")
+                console.log(data)
             })
             // console.log(options)
         }
