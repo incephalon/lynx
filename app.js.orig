@@ -11,7 +11,12 @@ var app = express();
 
 
 var mongojs = require("mongojs");
+<<<<<<< HEAD
+var mongourl = 'mongodb://bookmark:123456@paulo.mongohq.com:10017/youtap';
+mongourl = 'mongodb://incephalon:lthnia90_@ds050077.mongolab.com:50077/links';
+=======
 var mongourl = 'mongodb://incephalon:lthnia90_@ds050077.mongolab.com:50077/links';
+>>>>>>> ecfe935ce504100562edf37ab5b1ee0f87db3f0f
 var collectionList = ["bookmark"];
 var db = mongojs.connect(mongourl, collectionList);
         
@@ -38,12 +43,37 @@ app.use('/users', users);
 app.use('/save', function(req, res, next){
     var options = req.query;
     options.date = new Date();
+<<<<<<< HEAD
+=======
     console.log(options);
 
+>>>>>>> ecfe935ce504100562edf37ab5b1ee0f87db3f0f
     var tags = options.tags;
     tags = tags.replace(/ /g,'').split(",");
     options.tags = tags;  
     console.log(tags);
+<<<<<<< HEAD
+//     res.send(200, 'Cool')
+
+// return;
+
+    if(options._id)
+    {   
+        var id = options._id;
+        delete options._id;
+        db.bookmark.update({"_id":id},{$set : options},function(){console.log(options)});
+    }
+    else
+    {
+        db.bookmark.insert(options,function(err,data){
+            console.log(err);
+            if(data){
+                res.send(data);
+            }
+            
+        });
+    }
+=======
     console.log(options);
     // for(i=0;i<tags.length;i++){
         // options.tags = tags[i]; 
@@ -75,6 +105,7 @@ app.use('/save', function(req, res, next){
         }
     // }
     
+>>>>>>> ecfe935ce504100562edf37ab5b1ee0f87db3f0f
 });
 
 app.use('/fetch', function(req, res, next){
@@ -87,8 +118,12 @@ app.use('/fetch', function(req, res, next){
         console.log(err);
         console.log(data);
         if(data){
+<<<<<<< HEAD
+            res.send(data);            
+=======
             console.log(data);
             res.send(data);
+>>>>>>> ecfe935ce504100562edf37ab5b1ee0f87db3f0f
         }
         else{
             res.send("{}");

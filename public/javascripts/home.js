@@ -15,7 +15,7 @@ app.clickOnClear = function (){
 	$("#tagElement").val("");
 	$("#tagId").val("");
 	$("#goText").val("");
-
+	// app.hideDropdown();
 	app.emptyNotes();
 
 }
@@ -23,6 +23,7 @@ app.emptyNotes = function(){
 	$("#goText").val("");
 	$("#showList").html("");
 	log("emptyNotes")
+	// app.hideDropdown();
 }
 app.changeSite = function(){
 	log(this);
@@ -31,6 +32,7 @@ app.changeSite = function(){
 	$("#notesElement").val($(this).attr("note"));
 	$("#tagId").val($(this).attr("idTag"));
 	app.emptyNotes();
+	// app.hideDropdown();
 }
 app.onClickGoButton = function(){
 	var url = $("#urlText").val();
@@ -60,9 +62,8 @@ app.updateTage = function(){
 app.onClickFetchButton = function(){
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").show();
 	var options = {};
-	options.notes = $("#notesElement").val();
-	options.tags = $("#tagElement").val();
-	options.url = $("#urlIframe").attr("src");
+	options.tags = $("#goText").val();	
+
 	$.ajax({
 		"url" : "/fetch",
 		"data" : options,
@@ -76,19 +77,19 @@ app.onClickFetchButton = function(){
 app.ajaxResult = function(xhr,status,error){
 	log("fetch")
 	log(xhr.length);
-
+	// app.displayDropdown();
 	var temp = $("#goText").val();
 	for(var i=0;i<xhr.length;i++)
 	{
 		log(xhr[i]._id);
-		if(temp == xhr[i].tags)
-		{
-			$("#showList").append("<li class='list-group-item' note='"+xhr[i].notes+"' tag='"+xhr[i].tags+"' idTag='"+xhr[i]._id+"' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
-		}
-		else
-		{
-			log(xhr[i].tags);			log(temp);
-		}
+		// if(temp == xhr[i].tags)
+		// {
+		$("#showList").append("<li class='list-group-item' note='"+xhr[i].notes+"' tag='"+xhr[i].tags+"' idTag='"+xhr[i]._id+"' url='"+xhr[i].url+"' >"+xhr[i].notes+"</li>");
+		// }
+		// else
+		// {
+		// 	log(xhr[i].tags);			//log(temp);
+		// }
 	}
 	$(".list-group-item").bind("click",app.changeSite);
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();
@@ -99,4 +100,10 @@ app.ajaxSuccess = function(xhr,status,error){
 app.ajaxError = function(result,status,xhr){
 	log(result.responseText	);
 	$(".glyphicon.glyphicon-refresh.glyphicon-refresh-animate").hide();
+}
+app.displayDropdown = function(){
+	$("#toggelDrop").addClass("open")
+}
+app.hideDropdown = function(){
+	$("#toggelDrop").removeClass("open")	
 }

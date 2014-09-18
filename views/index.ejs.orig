@@ -34,6 +34,30 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
+		<div class="ui-row row" style='width:100%;'>
+			<div class="col-md-8" style="float:left;width:65%;">
+				<iframe id="urlIframe" class="embed-responsive-item" src="http://getbootstrap.com/"></iframe>
+			</div>
+			<div class="col-md-4" style="float:left;width:30%;">
+				<div class=" bs-docs-container"><!-- container -->
+					<div class="input-group">
+						<input id="goText"  type="text" class="form-control input-large" placeholder="Search your tag..">
+						<span id="goTag" class="input-group-addon input-large">
+							<span class="glyphicon glyphicon-search"></span>
+							<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display:none;"></span>
+						</span>
+					</div>
+					<ul id="showList" class="list-group">
+						<!-- <li class="list-group-item"></li> -->
+						
+					</ul>
+					<div id="tagId" type="text" class="form-control" style="display:none"></div>
+					<textarea id="notesElement" class="form-control" rows="3" placeholder="My notes"></textarea>
+					<input id="tagElement" type="email" class="form-control"  placeholder="My tag, second tag, third tag">
+					<button id="saveButton" type="button" class="btn btn-primary">Save</button>
+					<button id="clearButton" type="button" class="btn btn-primary">clear</button>
+=======
 		<div class="col-xs-4 col-sm-4">	
 
 			<div class="panel-group" id="accordion">
@@ -62,6 +86,7 @@
 				      </div>
 				    </div>
 				  </div>			  				  
+>>>>>>> ecfe935ce504100562edf37ab5b1ee0f87db3f0f
 				</div>
 
 			<div id="tagId" type="text" class="form-control" style="display:none"></div>
