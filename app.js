@@ -12,6 +12,7 @@ var app = express();
 
 var mongojs = require("mongojs");
 var mongourl = 'mongodb://bookmark:123456@paulo.mongohq.com:10017/youtap';
+mongourl = 'mongodb://incephalon:lthnia90_@ds050077.mongolab.com:50077/links';
 var collectionList = ["bookmark"];
 var db = mongojs.connect(mongourl, collectionList);
 
@@ -35,22 +36,24 @@ app.use('/users', users);
 app.use('/save', function(req, res, next){
     var options = req.query;
     options.date = new Date();
-    // console.log(options);
+    var tags = options.tags;
+    tags = tags.replace(/ /g,'').split(",");
+    options.tags = tags;  
+    console.log(tags);
 //     res.send(200, 'Cool')
 
 // return;
 
     if(options._id)
     {   
-        console.log(options._id+"/-")
         var id = options._id;
         delete options._id;
-        db.bookmark.update({"_id":id},{$set : options},function(){console.log(options)})
-        // console.log(options)
+        db.bookmark.update({"_id":id},{$set : options},function(){console.log(options)});
     }
     else
     {
         db.bookmark.insert(options,function(err,data){
+            console.log(err);
             if(data){
                 res.send(data);
             }
@@ -63,10 +66,7 @@ app.use('/fetch', function(req, res, next){
     db.bookmark.find({},function(err,data){
         console.log(err);
         if(data){
-            res.send(data);
-            
-            // for(var i=0;i<data.length;i++)
-            // {console.log(data[i].tags+"*"+data[i].notes) }
+            res.send(data);            
         }
         else{
             res.send("{}");
