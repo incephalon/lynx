@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var rovicorp = require('./server/rovicorp');
 var app = express();
 
 
@@ -19,7 +20,8 @@ var db = mongojs.connect(mongourl, collectionList);
 //      console.log(err+"err")
 //             console.log(data+"data")
 // })
-// view engine setup        
+// view engine setup     
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
