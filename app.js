@@ -16,10 +16,11 @@ var mongourl = 'mongodb://incephalon:lthnia90_@ds050077.mongolab.com:50077/links
 var collectionList = ["bookmark"];
 var db = mongojs.connect(mongourl, collectionList);
         
-// db.bookmark.remove({},function(err,data){
-//      console.log(err+"err")
-//             console.log(data+"data")
-// })
+// db.bookmark.find({},function(err,data){
+//     console.log("testing db")
+//     console.log(err)
+//     console.log(data)
+// });
 // view engine setup     
 
 app.set('views', path.join(__dirname, 'views'));
