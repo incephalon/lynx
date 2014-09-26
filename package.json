@@ -15,6 +15,7 @@
         "ejs": "~0.8.5",
         "less-middleware": "1.0.x",
         "mongodb": "*",
-        "mongojs": "*"
+        "mongojs": "*",
+        "request": "*"
     }
 }
