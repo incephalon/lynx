@@ -32,6 +32,7 @@ app.changeSite = function(){
 	$("#notesElement").val($(this).attr("note"));
 	$("#tagId").val($(this).attr("idTag"));
 	app.emptyNotes();
+	app.showAdd();
 	// app.hideDropdown();
 }
 app.onClickGoButton = function(){
@@ -106,4 +107,15 @@ app.displayDropdown = function(){
 }
 app.hideDropdown = function(){
 	$("#toggelDrop").removeClass("open")	
+}
+app.toggelSearchDisplay = function(){
+	
+}
+app.showSearch = function(){
+	$("#collapseTwo").removeClass("in");
+	$("#collapseOne").addClass("in");
+}
+app.showAdd = function(){
+	$("#collapseOne").removeClass("in");
+	$("#collapseTwo").addClass("in");
 }
